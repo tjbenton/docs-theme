@@ -1,0 +1,31 @@
+{
+  "name": "docs-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --devtool eval --inline --progress --colors",
+    "build": "webpack --progress --colors"
+  },
+  "author": "Tyler Benton <tjbenton21@gmail.com> (https://github.com/tjbenton)",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "css-loader": "^0.16.0",
+    "expose-loader": "^0.7.0",
+    "file-loader": "^0.8.4",
+    "react-hot-loader": "^1.2.8",
+    "react-router": "^0.13.3",
+    "regenerator": "^0.8.36",
+    "style-loader": "^0.12.3",
+    "stylus-loader": "^1.2.1",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.11.0",
+    "webpack-dev-server": "^1.10.1"
+  },
+  "dependencies": {
+    "babel-runtime": "^5.8.20",
+    "react": "^0.13.3"
+  }
+}
