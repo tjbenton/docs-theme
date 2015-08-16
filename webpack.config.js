@@ -44,7 +44,7 @@ module.exports = {
  plugins: [
   new webpack.HotModuleReplacementPlugin(),
   new webpack.ProvidePlugin({
-   React: "react/addons",
+   React: "react/addons"
   }),
   // new webpack.optimize.OccurenceOrderPlugin(),
   // new webpack.ResolverPlugin(new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin("bower.json", ["main"])),

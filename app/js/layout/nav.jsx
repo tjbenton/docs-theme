@@ -1,5 +1,5 @@
-import Link from "../router";
-let _Nav = React.createClass({
+// import Link from "Router";
+let SiteNav = React.createClass({
  getInitialState(){
   return {
    focused: 0
@@ -14,7 +14,7 @@ let _Nav = React.createClass({
  },
  render(){
   return (
-   <nav>
+   <div>
     <ul>{
      this.props.items.map((item, index) => {
       var style = "";
@@ -28,9 +28,9 @@ let _Nav = React.createClass({
      })
     }</ul>
     <p>Selected: {this.props.items[this.state.focused]}</p>
-   </nav>
+   </div>
   );
  }
 });
 
-export default _Nav;
+export default SiteNav;
