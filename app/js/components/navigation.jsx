@@ -33,20 +33,20 @@ var TreeNode = React.createClass({
   }
 });
 
-var tree = {
-  title: "howdy",
-  childNodes: [
-    {title: "bobby"},
-    {title: "suzie", childNodes: [
-      {title: "puppy", childNodes: [
-        {title: "dog house"}
-      ]},
-      {title: "cherry tree"}
-    ]}
-  ]
-};
-
-React.render(
- <TreeNode node={tree} />,
- document.getElementById("tree")
-);
+// var tree = {
+//   title: "howdy",
+//   childNodes: [
+//     {title: "bobby"},
+//     {title: "suzie", childNodes: [
+//       {title: "puppy", childNodes: [
+//         {title: "dog house"}
+//       ]},
+//       {title: "cherry tree"}
+//     ]}
+//   ]
+// };
+//
+// React.render(
+//  <TreeNode node={tree} />,
+//  document.getElementById("tree")
+// );

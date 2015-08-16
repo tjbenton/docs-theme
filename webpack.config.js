@@ -52,8 +52,8 @@ module.exports = {
    maxChunks: 50
   }),
   new webpack.optimize.DedupePlugin(),
-  // new webpack.optimize.AggressiveMergingPlugin(),
-  new webpack.NoErrorsPlugin(),
+  new webpack.optimize.AggressiveMergingPlugin(),
+  // new webpack.NoErrorsPlugin(),
  ],
  resolve: {
   // all these extensions will be resolved without specifying extension in the `require` function

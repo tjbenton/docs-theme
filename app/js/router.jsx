@@ -11,13 +11,16 @@
 // });
 // export default router;
 
-
-export default function Router(){
+const router = (function(){
  "use strict";
- var routes = [];
- function addRoute(route, handler){
+
+ var routes = [],
+     _default;
+
+ function add(route, handler){
+
   routes.push({
-   parts: route.split("/"),
+   parts: route.split("/").filter(Boolean),
    handler: handler
   });
  }
@@ -26,11 +29,15 @@ export default function Router(){
   window.location.hash = route;
  }
 
- function start(){
+ function fallback(callback){
+  _default = callback;
+ }
+
+ function run(){
   var path = window.location.hash.substr(1),
-      parts = path.split("/"),
+      parts = path.split("/").filter(Boolean),
       parts_length = parts.length;
-  console.log(window.location);
+
   for(var i = 0; i < routes.length; i++){
    var route = routes[i];
    if(route.parts.length === parts_length){
@@ -38,8 +45,7 @@ export default function Router(){
     for(var j = 0; j < parts_length; j++){
      if(route.parts[j].substr(0, 1) === ":"){
       params.push(parts[j]);
-     }
-     else if(route.parts[j] !== parts[j]){
+     }else if(route.parts[j] !== parts[j]){
       break;
      }
     }
@@ -49,13 +55,38 @@ export default function Router(){
     }
    }
   }
+
+  _default(parts);
  }
 
- window.onhashchange = start;
 
  return {
-  addRoute,
+  add,
   load,
-  start
+  run,
+  fallback
  };
+}());
+
+export default router;
+
+
+window.onhashchange = function(){
+ router.run();
 };
+
+
+export class Link extends React.Component{
+ href(){
+  if(this.props.href.substr(0, 2) === "#/"){
+   return this.props.href;
+  }else{
+   return `#/${this.props.href}`.replace("//", "/");
+  }
+ };
+ render(){
+  return (
+   <a href={this.href()}>{this.props.children}</a>
+  );
+ }
+}

@@ -1,7 +1,7 @@
 
 import "babel-core/polyfill";
-import Router, { DefaultRoute, Link, Route, RouteHandler } from "react-router";
-import home from "./pages/home";
+// import Router, { DefaultRoute, Link, Route, RouteHandler } from "react-router";
+import Home from "./pages/home";
 import layout from "./pages/layout";
 import SortLayout from "./components/sort-layout";
 
@@ -26,7 +26,7 @@ import SortLayout from "./components/sort-layout";
 // }
 
 
-var App = React.createClass({
+var ShitFuck = React.createClass({
  contextTypes: {
   router: React.PropTypes.func
  },
@@ -61,44 +61,6 @@ var App = React.createClass({
  }
 });
 
-
-var Page = React.createClass({
- contextTypes: {
-  router: React.PropTypes.func
- },
-
- getHandlerKey(){
-  var childDepth = 1; // assuming App is top-level route
-  var { router } = this.context;
-  console.log("router.getCurrentParams:", router.getCurrentParams());
-  console.log("router.getCurrentRoutes:", router.getCurrentRoutes()[0]);
-  // var key = router.getCurrentRoutes()[childDepth].name;
-  // var id = router.getCurrentParams().id;
-  // if (id) { key += id; }
-
-  return (
-   "NO NO FUCK YOU"
-  );
-  // return key;
- },
-
- render(){
-  return (
-   <div>All the things yo {this.getHandlerKey()}</div>
-  )
- }
-});
-
-
-// let routes = (
-//  <Route name="app" key="app" path="/" handler={App}>
-//   <Route name="test" key="layout" path="/:fuck" handler={test} />
-//   <Route name="layout" key="layout" path="/layout" handler={layout} />
-//   <Route name="sort-layout" key="sort-layout" path="/sort-layout/:contact" handler={SortLayout} />
-//   <DefaultRoute name="home" key="home" handler={home}/>
-//  </Route>
-// );
-//
 // let routes = (
 //  <Route name="app" key="app" path="/" handler={App}>
 //   <Route name="page" key="page" path="/*" handler={Page} />
@@ -112,30 +74,39 @@ var Page = React.createClass({
 // });
 
 
-// class Hello extends React.Component{
-//  render(){
-//   router.load(this.props.name)
-//   return (
-//    <a href="#d/test">Hello {this.props.name}</a>
-//   );
-//  }
+
+
+import router, {Link} from "./router";
+import Header from "./layout/header";
+
+// const router = new Router();
+
+
+class App extends React.Component{
+ render(){
+  return (
+   <div>
+    <Header />
+    <a href="#/page">Page 1</a>
+   </div>
+  );
+ }
+}
+
+router.add("/", function(){
+ React.render(<Home />, document.body);
+});
+
+router.fallback(function(parts){
+ console.log("parts:", parts);
+ React.render(<App />, document.body);
+})
+
+router.run();
+
+// window.onhashchange = function(){
+//  router.run();
 // }
-//
-// class Main extends React.Component{
-//  render() {
-//   return <Hello name={this.props.name} />;
-//  }
-// }
-//
-// router.addRoute("", function(){
-//  React.render(<Main name="World" />, document.body);
-// });
-//
-// router.addRoute("d/:id", function(id) {
-//  React.render(<Main name="Earth" />, document.body);
-// });
-//
-// router.start();
 
 
 // var request = new XMLHttpRequest();
