@@ -2,6 +2,8 @@ import { Link } from "react-router-component";
 import Header from "./header";
 import Footer from "./footer";
 import View from "./view";
+import DocsStore from "../stores/DocsStore";
+
 
 var Detail = React.createClass({
  render: function(){
@@ -13,7 +15,39 @@ var Detail = React.createClass({
  }
 });
 
-export default class Layout extends React.Component{
+let Layout = React.createClass({
+ getInitialState(){
+  return {
+   data: DocsStore.getDocs(),
+   nav: "",
+   pages: "",
+   loading: true
+  };
+ },
+
+ componentWillMount(){
+  DocsStore.init();
+ },
+
+ componentDidMount(){
+  DocsStore.addChangeListener(this.updateDocs);
+ },
+
+ componentWillUnmount(){
+  DocsStore.removeChangeListener(this.updateDocs);
+ },
+
+ updateDocs(){
+  if(!this.isMounted()){
+   return;
+  }
+  console.log(DocsStore.getDocs());
+  this.setState({
+   data: DocsStore.getDocs(),
+   loading: false
+  });
+ },
+
  render(){
   return (
    <div>
@@ -23,5 +57,7 @@ export default class Layout extends React.Component{
      <Footer />
    </div>
   );
- };
-};
+ }
+});
+
+export default Layout;
