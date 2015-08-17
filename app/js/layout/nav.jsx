@@ -14,7 +14,7 @@ let SiteNav = React.createClass({
  },
  render(){
   return (
-   <div>
+   <nav>
     <ul>{
      this.props.items.map((item, index) => {
       var style = "";
@@ -28,7 +28,7 @@ let SiteNav = React.createClass({
      })
     }</ul>
     <p>Selected: {this.props.items[this.state.focused]}</p>
-   </div>
+   </nav>
   );
  }
 });
