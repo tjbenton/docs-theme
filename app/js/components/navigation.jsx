@@ -22,9 +22,7 @@ var TreeNode = React.createClass({
 
     return (
       <div>
-        <h5 onClick={this.toggle}>
-          {this.props.node.title}
-        </h5>
+        <a onClick={this.toggle}>{this.props.node.title}</a>
         <ul style={style}>
           {childNodes}
         </ul>
