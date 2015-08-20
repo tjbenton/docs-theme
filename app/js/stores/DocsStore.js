@@ -40,7 +40,7 @@ function ajax(url){
  return new Promise((resolve, reject) => {
   let req = new XMLHttpRequest;
   req.open("GET", url);
-  req.onload = () => resolve(req.responseText);
+  req.onload = () => resolve(JSON.parse(req.responseText));
   req.onerror = reject;
   req.setRequestHeader("authorization", localStorage.token);
   req.send();
