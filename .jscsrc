@@ -79,7 +79,7 @@
  "requireSpaceAfterKeywords": ["return", "typeof", "void"],
  "disallowSpacesInsideObjectBrackets": null,
  "safeContextKeyword": ["$obj", "obj", "$that", "that", "$elem", "elem", "_this", "self", "_self", "_", "$parent", "parent", "instance", "result", "context"],
- "fileExtensions": [".js", "jscs"],
+ "fileExtensions": [".js", ".jsx", "jscs"],
  "validateQuoteMarks": {
   "mark": "\"",
   "escape": true
