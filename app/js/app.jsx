@@ -1,47 +1,28 @@
-
+require("../stylus/docs-theme");
 import "babel-core/polyfill";
 import Router, {Locations, Location, Link} from "react-router-component";
-import Layout from "./layout";
+import Home from "./pages/home";
+import PageLayout from "./pages/layout";
+import Search from "./pages/search";
 
-var App = React.createClass({
+let App = React.createClass({
  render: function(){
   return (
    <div>
     <Locations hash>
-     <Location path="/" handler={Layout} />
-     <Location path="/:item" handler={Layout} />
+     <Location path="/" handler={<Home />} />
+     <Location path="/:page" handler={<Switch />} />
+     <Location path="/:page/*" handler={<Switch />} />
     </Locations>
    </div>
   );
  }
 });
 
+let Switch = React.createClass({
+ render(){
+  return this.props.page !== "search" ? <PageLayout params={this.props._} /> : <Search />;
+ }
+});
+
 React.render(<App />, document.body);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var request = new XMLHttpRequest();
-// request.open("GET", "/my/url", true);
-//
-// request.onload = function(){
-//   if(request.status >= 200 && request.status < 400){
-//    // Success!
-//    var data = JSON.parse(request.responseText);
-//   }else{
-//    // We reached our target server, but it returned an error
-//   }
-// };
-//
-// request.send();

@@ -1,26 +1,24 @@
 import { Link } from "react-router-component";
 import Header from "./header";
+import Nav from "./nav";
 import Footer from "./footer";
 import View from "./view";
 import DocsStore from "../stores/DocsStore";
+import Search from "../components/search";
 
-
-var Detail = React.createClass({
- render: function(){
-  return (
-   <div>
-    <p>Detailed info for item: {this.props.item}</p>
-   </div>
-  );
- }
-});
+var InitialNav = [{
+ title: "Home",
+ href: "/",
+ body: [],
+ subpages: []
+}];
 
 let Layout = React.createClass({
  getInitialState(){
+  let data = DocsStore.getDocs();
   return {
-   data: DocsStore.getDocs(),
-   nav: "",
-   pages: "",
+   nav: data.nav || InitialNav,
+   pages: data.pages || [],
    loading: true
   };
  },
@@ -41,9 +39,12 @@ let Layout = React.createClass({
   if(!this.isMounted()){
    return;
   }
-  console.log(DocsStore.getDocs());
+
+  let data = DocsStore.getDocs();
+
   this.setState({
-   data: DocsStore.getDocs(),
+   nav: InitialNav.concat(data.nav),
+   pages: data.pages,
    loading: false
   });
  },
@@ -51,13 +52,30 @@ let Layout = React.createClass({
  render(){
   return (
    <div>
-     <Header />
-     <View />
-     {this.props.item && <Detail item={this.props.item} />}
-     <Footer />
+    <header className="s-header">
+     This is the Header yo
+    </header>
+    <Nav items={this.state.nav} />
+    {this.props.children && React.Children.map(this.props.children, (child) => child)}
+    <Footer />
    </div>
   );
  }
 });
 
 export default Layout;
+
+
+
+function extend(a, b){
+ // Don't touch `null` or `undefined` objects.
+ if(!a || !b){
+  return a;
+ }
+
+ for(let k in b){
+  a[k] = is.object(b[k]) ? is.object(a[k]) ? to.extend(a[k], b[k]) : b[k] : b[k];
+ }
+
+ return a;
+}

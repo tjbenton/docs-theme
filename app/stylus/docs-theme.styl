@@ -1,4 +1,10 @@
 @import "normalize"
+ 
+*
+ box-sizing border-box
+ margin 0
+ &:before, &:after
+  box-sizing inherit
 
 /* variables */
 $lightgrey = #999
@@ -32,13 +38,3 @@ header
   nav
     float:right
     user-select:none
-
-  .nav-item
-    float:left
-    margin-left:.5em
-
-    a.active
-      text-decoration:underline
-
-.content
-  padding: 1em

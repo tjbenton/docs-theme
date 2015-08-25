@@ -199,21 +199,22 @@ var SearchExample = React.createClass({
 
   if(this.refs.search){
    var filters = ["user.name", "subject"];
-    mails = mails.filter(this.refs.search.filter(filters));
-   }
+   mails = mails.filter(this.refs.search.filter(filters));
+  }
 
-   return (
-    <div>
-     <Search ref="search" onChange={this.searchUpdated} />
-     {mails.map((mail) => {
-      return (
-       <div className="mail">
-        <span className="from">{mail.user.name}: </span>
-        <span className="subject">{mail.subject}</span>
-       </div>
-      )
-     })}
-    </div>
-   );
+  return (
+   <div>
+    {this.props}
+    <Search ref="search" onChange={this.searchUpdated} />
+    {mails.map((mail) => {
+     return (
+      <div className="mail">
+       <span className="from">{mail.user.name}: </span>
+       <span className="subject">{mail.subject}</span>
+      </div>
+     )
+    })}
+   </div>
+  );
  }
 });

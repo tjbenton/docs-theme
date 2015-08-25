@@ -1,5 +1,10 @@
-export default class layout extends React.Component{
+import Layout from "../layout";
+export default class PageLayout extends React.Component{
  render(){
-  return <div>Hello {this.props.name}</div>;
+  return (
+   <Layout params={this.props.params}>
+
+   </Layout>
+  );
  }
 }
